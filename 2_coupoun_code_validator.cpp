@@ -24,6 +24,7 @@ public:
           (bl[i]=="pharmacy") || (bl[i]=="restaurant")))
          ans.push_back({priority[bl[i]],code[i]});
      }
+      // In question we have to sort according to some items, if item is same then sort according to lexico. order
         sort(ans.begin(),ans.end());
         vector<string>v;
         for(auto i:ans){
