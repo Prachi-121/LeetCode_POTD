@@ -1,3 +1,4 @@
+// Using Binary dearch
 class Solution {
 public:
     int maxTwoEvents(vector<vector<int>>& evt) {
@@ -17,6 +18,27 @@ public:
         else{
             ans=max(ans,evt[i][2]);
         }
+       }
+       return ans;
+    }
+};
+
+
+// Using priority queue
+class Solution {
+public:
+    int maxTwoEvents(vector<vector<int>>& evt) {
+       int ans=0,maxVal=0;
+       sort(evt.begin(),evt.end());
+       priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+       for(auto i:evt){
+        int s=i[0],e=i[1],val=i[2];
+        while(!pq.empty() && pq.top().first<s){
+            maxVal=max(maxVal,pq.top().second);
+            pq.pop();
+        }
+        ans=max(ans,maxVal+val);
+        pq.push({e,val});
        }
        return ans;
     }
